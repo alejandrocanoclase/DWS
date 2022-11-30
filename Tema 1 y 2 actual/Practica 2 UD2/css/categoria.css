@@ -1,0 +1,46 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-image: url(../fotos/popcorn.jpg);
+    background-repeat: no-repeat;
+}
+
+h1{
+    padding: 15pt;
+    font-size: 30pt;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30pt;
+    background-image: url(../fotos/ticket-303706.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 15pt;
+    color: black;
+    
+    
+}
+
+a:hover{
+    padding: 15pt 15pt 15pt 15pt;
+    color: purple;
+    
+}
+
+ul{
+    top: 40%;
+    width: 100%;
+    list-style: none;
+    position: absolute;
+    left: 70%;
+}
+ul li{
+    padding: 15pt 15pt 15pt 0pt;
+    
+}

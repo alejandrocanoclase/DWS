@@ -1,0 +1,110 @@
+*{
+    padding: 0pt;
+    margin: 0pt;
+}
+
+
+
+nav{
+    background-color: orange;   
+    margin-bottom: 5pt; 
+}
+
+nav li{
+    padding: 15pt;
+    font-size: 20pt;
+    font-family: 'Bangers', cursive;
+}
+
+li a{
+    text-decoration: none;
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+body{
+    background-image: url(./../fotos/onepiece.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.contenedor{
+    width: 70%;
+    height: 90%;
+    margin: auto;
+    background-color: rgb(61, 61, 255);
+    color: white;
+    padding: 10pt;
+    border-radius: 5pt;
+    
+}
+
+footer{
+    background-color: orangered;
+    color: white;
+    padding: 15pt;
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    margin-top: 5pt;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+
+
+/* pintaPelicula */
+.cabeceraPeli{
+    padding: 10pt 0pt;
+}
+
+.cabeceraPeli h2{
+    width: 50%;
+    display: inline;
+    font-size: 25pt;
+}
+.cabeceraPeli p{
+    width: 50%;
+    float: right;
+    position: relative;
+    display: inline;
+    text-align: right;
+    bottom: 20pt;
+    
+}
+
+.imagenPeli{
+    height: 150pt;
+}
+.pelicula p{
+    display: inline;
+    float: right;
+    width: 60%;
+    float: right;
+    text-align: justify;
+    position: relative;
+    padding: 15pt 15pt 15pt 0pt;
+    
+}
+
+.piePeli {
+    margin: 10pt;
+    
+}
+.piePeli p{
+    display: inline;
+    width: 50%;
+}
+
+#enlace{
+    position: relative;
+    float: right;
+    text-align: right;
+    
+}
