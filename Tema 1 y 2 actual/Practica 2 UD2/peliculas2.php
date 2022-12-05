@@ -10,9 +10,9 @@
     ini_set('html_errors', 0);
 
     
-        if($_GET["cat"] == "Terror"){
+        if($_GET["cat"] == 1){
             echo '<link rel="stylesheet" href="./css/terror2.css">';
-        }elseif($_GET["cat"] == "Anime"){
+        }elseif($_GET["cat"] == 2){
             echo '<link rel="stylesheet" href="./css/anime2.css">';
         }
     

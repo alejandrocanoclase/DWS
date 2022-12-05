@@ -15,10 +15,10 @@
             <h1>Categoria de películas</h1>
             <ul>
                 <li>
-                    <a id="terror" href="peliculas2.php?cat=Terror">Terror</a>
+                    <a id="terror" href="peliculas2.php?cat=1">Terror</a>
                 </li>
                 <li>
-                    <a id="anime" href="peliculas2.php?cat=Anime">Anime</a>
+                    <a id="anime" href="peliculas2.php?cat=2">Anime</a>
                 </li>
             </ul>
         </div>

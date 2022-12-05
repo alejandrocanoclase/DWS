@@ -28,11 +28,11 @@ class Pelicula
             echo "Error al conectar a MySQL: " . mysqli_connect_errno();
         }
         mysqli_select_db($conexion, 'cartelera_BD');
-        $id_categoria = $_POST['id_categoria'];
+        $id_categoria = $_GET['cat'];
         $sanitized_categoria_id = mysqli_real_escape_string($conexion, $id_categoria);
 
 
-        $consulta = "SELECT * FROM T_Peliculas WHERE id_categria='" .$sanitized_categoria_id. "';";
+        $consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria='" .$sanitized_categoria_id. "';";
         $resultado = mysqli_query($conexion, $consulta);
 
         $peliculas = [];
@@ -50,6 +50,7 @@ class Pelicula
 
                     $peliculas[$contador] = $peli;
                     $contador++;
+                    //echo $registro['titulo'];
                 }
             } else {
                 echo "No hay resultados";
