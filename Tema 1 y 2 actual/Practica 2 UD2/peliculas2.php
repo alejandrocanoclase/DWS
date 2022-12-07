@@ -41,22 +41,9 @@
             ini_set('display_errors', 'On');
             ini_set('html_errors', 0);
 
-            $texto = "La película es protagonizada por Noomi Rapace, Michael Fassbender y Charlize Theron. 
-            El argumento sigue a la tripulación de la nave espacial Prometheus a finales del siglo XXI, 
-            a medida que exploran una avanzada civilización alienígena en busca de los orígenes de la humanidad.";
-
-            /*
-            $peli1 = new Pelicula("La fiesta de las salchichas", $texto, "prom.jpg");
-            $peli1->pintarPelicula();
-            $plei2 = $peli1;
-            $plei2->pintarPelicula();
-            $plei3 = $peli1;
-            $plei3->pintarPelicula();
-            */
-
-            $prueba = new Pelicula();
-
-            $datos = $prueba->leerDatos();
+            $peli = new Pelicula();
+            
+            $datos = $peli->leerDatos('cat');
 
             
 

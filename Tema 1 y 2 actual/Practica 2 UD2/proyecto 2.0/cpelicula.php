@@ -1,8 +1,8 @@
 <?php
 
-class Pelicula
-{
+class Pelicula{
 
+    
     private function init($id, $titulo, $año, $duracion, $sinopsis, $imagen, $votos, $idCategoria)
     {
         $this->id = $id;
@@ -14,24 +14,21 @@ class Pelicula
         $this->votos = $votos;
         $this->idCategoria = $idCategoria;
     }
+    
 
     function __construct()
     {
         
     }
 
-    function leerDatos($argumento)
-    {
-        $conexion = mysqli_connect('localhost', 'root', '1234');
-        if (mysqli_connect_errno()) {
-
-            echo "Error al conectar a MySQL: " . mysqli_connect_errno();
-        }
-        mysqli_select_db($conexion, 'cartelera_BD');
-        $id_categoria = $_GET[$argumento];
+    function leerPeliculas($id){
+        require('conexionBD.php');
+        
+        $id_categoria = $id;
         $sanitized_categoria_id = mysqli_real_escape_string($conexion, $id_categoria);
 
 
+        //$consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria='" .$sanitized_categoria_id. "';";
         $consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria='" .$sanitized_categoria_id. "';";
         $resultado = mysqli_query($conexion, $consulta);
 
@@ -45,12 +42,14 @@ class Pelicula
         } else {
             if (($resultado->num_rows) > 0) {
                 while ($registro = mysqli_fetch_assoc($resultado)) {
+                    
                     $peli = new Pelicula();
                     $peli->init($registro['id'], $registro['titulo'], $registro['año'], $registro['duracion_min'], $registro['sinopsis'], $registro['imagen'], $registro['votos'], $registro['idCategoria']);
 
                     $peliculas[$contador] = $peli;
                     $contador++;
-                    //echo $registro['titulo'];
+                    
+                    //echo $registro['titulo']. "<br>";
                 }
             } else {
                 echo "No hay resultados";
@@ -58,29 +57,35 @@ class Pelicula
         }
 
         return $peliculas;
+
     }
 
-    function pintarPelicula()
+    function pintarPeliculas($peliculas)
     {
 
-        echo "<div class='cartelera'>";
-        echo "<div class='cabeceraPeli'>";
-        echo "<h2>$this->titulo</h2>";
-        echo "<p>Votos: $this->votos</p>";
-        echo "</div>";
+            foreach($peliculas as $pelicula){
+            echo "<div class='cartelera'>";
+            echo "<div class='cabeceraPeli'>";
+            echo "<h2>".$pelicula->titulo."</h2>";
+            echo "<p>Votos: ".$pelicula->votos."</p>";
+            echo "</div>";
 
-        echo "<div class='pelicula'>";
+            echo "<div class='pelicula'>";
 
-        echo "<p>$this->sinopsis</p>";
-        echo "<img class='imagenPeli' src='fotos/$this->imagen' alt='imagen de la pelicula'>";
+            echo "<p>".$pelicula->sinopsis."</p>";
+            echo "<img class='imagenPeli' src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'>";
 
-        echo "</div>";
+            echo "</div>";
 
-        echo "<div class='piePeli'>";
-        echo "<p>Duración: $this->duracion min</p>";
-        echo "<p id='enlace'>Enlace, <a href='verFicha.php?id=$this->id' target='_blank'>ver Ficha</a></p>";
-        echo "</div>";
-        echo "</div>";
-        echo "<br>";
+            echo "<div class='piePeli'>";
+            echo "<p>Duración: ".$pelicula->duracion." min</p>";
+            echo "<p id='enlace'>Enlace, <a href='verFicha.php?id=".$pelicula->id."' target='_blank'>ver Ficha</a></p>";
+            echo "</div>";
+            echo "</div>";
+            echo "<br>";
+            }
+
     }
+
+
 }
