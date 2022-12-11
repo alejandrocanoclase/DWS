@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-image: url(../fotos/popcorn.jpg);
+    
+}
+
+a{
+    text-decoration: none;
+    font-family: 'Limelight', cursive;
+    font-size: 25pt;
+    background-image: url(../fotos/ticket-303706.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 15pt;
+    color: black;
+    
+    
+}
+
+a:hover{
+    padding: 15pt 15pt 15pt 15pt;
+    color: purple;
+    
+}
+
+ul{
+    margin-top: 15%;
+    width: 20%;
+    list-style: none;
+    float: right;
+}
+ul li{
+    padding: 20pt 20pt 20pt 0pt;
+    
+}

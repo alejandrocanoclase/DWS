@@ -28,7 +28,7 @@
     <!-- Barra de navegación -->
     <nav>
         <ul>
-            <li><a href="categorias.php">Categoria de la cartelera</a></li>
+            <li><a class="fuenteAnime" href="categorias.php">Categoria de la cartelera</a></li>
         </ul>
     </nav>
 
@@ -56,7 +56,7 @@
 
     <!-- Pie de página -->
 
-    <footer>Copy Right &copy 2022</footer>
+    <footer >Copy Right &copy 2022</footer>
 
 </body>
 </html>

@@ -22,7 +22,8 @@ class Catergoria{
                 echo "<ul>";
                 while ($registro = mysqli_fetch_assoc($resultado)) {
                     
-                    echo "<li><a href='cartelera.php?id=".$registro['id']."' >".$registro['genero']."</a></li>" ;
+                    echo "<li><a href='cartelera.php?idc=".$registro['id']."' >".$registro['genero']."</a></li>" ;
+                    
 
                 }
                 echo "<ul>";
@@ -33,4 +34,22 @@ class Catergoria{
 
     }
 
+    function tipoGenero(){
+        require("conexionBD.php");
+        $idCategoria = $_GET['idc'];
+        $sanitized_categoria_id = mysqli_real_escape_string($conexion, $idCategoria);
+        $consulta = "SELECT estilo FROM T_CATEGORIAS WHERE id='" .$sanitized_categoria_id. "';";
+        $resultado = mysqli_query($conexion, $consulta);
+
+        if(!$resultado){
+            echo "ha petado";
+        }else{
+            if($resultado->num_rows > 0){
+                $registro = mysqli_fetch_assoc($resultado);
+            return $registro['estilo'];
+            }else{
+                header('Location: error.html');
+            }
+        }
+    }
 }

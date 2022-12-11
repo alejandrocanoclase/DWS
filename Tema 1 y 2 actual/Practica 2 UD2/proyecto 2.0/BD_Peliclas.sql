@@ -6,20 +6,23 @@ use cartelera_BD;
 drop table if exists T_CATEGORIAS;
 create table T_CATEGORIAS(
 id int primary key,
-genero varchar(20)
+genero varchar(20),
+estilo varchar(20)
 );
 
 INSERT INTO `cartelera_BD`.`T_CATEGORIAS`
 (`id`,
-`genero`)
+`genero`,
+`estilo`)
 VALUES
-(1, 'Terror');
+(1, 'Terror','terror.css');
 
 INSERT INTO `cartelera_BD`.`T_CATEGORIAS`
 (`id`,
-`genero`)
+`genero`,
+`estilo`)
 VALUES
-(2, 'Anime');
+(2, 'Anime','anime.css');
 
 drop table if exists T_PELICULAS;
 CREATE TABLE T_PELICULAS (
@@ -134,7 +137,9 @@ insert into T_ACTORES (id, nombre) values (1, "Vera Farmiga"),(2, "Patrick Wilso
 
 select * from T_PELICULAS;
 
-
-
+/*
+CREATE USER 'alex'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON cartelera_bd.* TO 'alex'@'localhost';
+*/
 -- ConnectionString.com
 

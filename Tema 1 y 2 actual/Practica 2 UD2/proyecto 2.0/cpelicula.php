@@ -1,10 +1,9 @@
 <?php
 
-class Pelicula{
+class Pelicula {
 
-    
-    private function init($id, $titulo, $año, $duracion, $sinopsis, $imagen, $votos, $idCategoria)
-    {
+    private function init( $id, $titulo, $año, $duracion, $sinopsis, $imagen, $votos, $idCategoria )
+ {
         $this->id = $id;
         $this->titulo = $titulo;
         $this->año = $año;
@@ -14,45 +13,42 @@ class Pelicula{
         $this->votos = $votos;
         $this->idCategoria = $idCategoria;
     }
-    
 
     function __construct()
-    {
-        
+ {
+
     }
 
-    function leerPeliculas($id){
-        require('conexionBD.php');
-        
+    function leerPeliculas( $id ) {
+        require( 'conexionBD.php' );
+
         $id_categoria = $id;
-        $sanitized_categoria_id = mysqli_real_escape_string($conexion, $id_categoria);
+        $sanitized_categoria_id = mysqli_real_escape_string( $conexion, $id_categoria );
 
-
-        //$consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria='" .$sanitized_categoria_id. "';";
         $consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria='" .$sanitized_categoria_id. "';";
-        $resultado = mysqli_query($conexion, $consulta);
+        $resultado = mysqli_query( $conexion, $consulta );
 
         $peliculas = [];
         $contador = 0;
 
-        if (!$resultado) {
-            $mensaje = 'Consulta inválida: ' . mysqli_errno($conexion) . "\n";
+        if ( !$resultado ) {
+            $mensaje = 'Consulta inválida: ' . mysqli_errno( $conexion ) . '\n';
             $mensaje .= 'Consulta realizada: ' . $consulta;
-            die($mensaje);
+            die( $mensaje );
         } else {
-            if (($resultado->num_rows) > 0) {
-                while ($registro = mysqli_fetch_assoc($resultado)) {
-                    
-                    $peli = new Pelicula();
-                    $peli->init($registro['id'], $registro['titulo'], $registro['año'], $registro['duracion_min'], $registro['sinopsis'], $registro['imagen'], $registro['votos'], $registro['idCategoria']);
+            if ( ( $resultado->num_rows ) > 0 ) {
+                while ( $registro = mysqli_fetch_assoc( $resultado ) ) {
 
-                    $peliculas[$contador] = $peli;
+                    $peli = new Pelicula();
+                    $peli->init( $registro[ 'id' ], $registro[ 'titulo' ], $registro[ 'año' ], $registro[ 'duracion_min' ], $registro[ 'sinopsis' ], $registro[ 'imagen' ], $registro[ 'votos' ], $registro[ 'idCategoria' ] );
+
+                    $peliculas[ $contador ] = $peli;
                     $contador++;
-                    
-                    //echo $registro['titulo']. "<br>";
+
+                    //echo $registro[ 'titulo' ]. '<br>';
                 }
             } else {
-                echo "No hay resultados";
+                echo 'No hay resultados';
             }
         }
 
@@ -60,32 +56,80 @@ class Pelicula{
 
     }
 
-    function pintarPeliculas($peliculas)
-    {
+    function pintarPeliculas( $peliculas )
+ {
 
-            foreach($peliculas as $pelicula){
-            echo "<div class='cartelera'>";
-            echo "<div class='cabeceraPeli'>";
-            echo "<h2>".$pelicula->titulo."</h2>";
-            echo "<p>Votos: ".$pelicula->votos."</p>";
-            echo "</div>";
-
+        foreach ( $peliculas as $pelicula ) {
+            
             echo "<div class='pelicula'>";
+            echo "<div class='cabeceraPeli'>";
+            echo '<h2>'.$pelicula->titulo.'</h2>';
+            echo '<p>Votos: '.$pelicula->votos.'</p>';
+            echo '</div>';
 
-            echo "<p>".$pelicula->sinopsis."</p>";
+            echo "<div class='centPeli'>";
             echo "<img class='imagenPeli' src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'>";
-
-            echo "</div>";
+            echo '<p>'.$pelicula->sinopsis.'</p>';
+            echo '</div>';
 
             echo "<div class='piePeli'>";
-            echo "<p>Duración: ".$pelicula->duracion." min</p>";
-            echo "<p id='enlace'>Enlace, <a href='verFicha.php?id=".$pelicula->id."' target='_blank'>ver Ficha</a></p>";
-            echo "</div>";
-            echo "</div>";
-            echo "<br>";
-            }
+            echo '<p>Duración: '.$pelicula->duracion.' min</p>';
+            echo "<p id='enlace'>Enlace, <a href='verFicha.php?idp=".$pelicula->id."&idc=".$pelicula->idCategoria."'>ver Ficha</a></p>";
+            echo '</div>';
+            echo '</div>';
+            echo '<br>';
+        }
 
     }
 
+    function pintarFichaPelicula() {
+        require( 'conexionBD.php' );
 
+        $idPelicula = $_GET[ 'idp' ];
+        $sanitized_categoria_id = mysqli_real_escape_string( $conexion, $idPelicula );
+        $consulta = "SELECT * FROM T_PELICULAS WHERE id='" .$sanitized_categoria_id. "';";
+        $resultado = mysqli_query( $conexion, $consulta );
+
+        if ( !$resultado ) {
+            $mensaje = 'Consulta inválida: ' . mysqli_errno( $conexion ) . '\n';
+            $mensaje .= 'Consulta realizada: ' . $consulta;
+            die( $mensaje );
+        } else {
+            if ( ( $resultado->num_rows ) > 0 ) {
+                $registro = mysqli_fetch_assoc( $resultado );
+
+                $peli = new Pelicula();
+                $peli->init( $registro[ 'id' ], $registro[ 'titulo' ], $registro[ 'año' ], $registro[ 'duracion_min' ], $registro[ 'sinopsis' ], $registro[ 'imagen' ], $registro[ 'votos' ], $registro[ 'idCategoria' ] );
+
+                echo "<div class='pelicula'>";
+                echo "<div class='cabeceraPeli'>";
+                echo '<h2>'.$registro[ 'titulo' ].'</h2>';
+                echo '<p>Votos: '.$registro[ 'votos' ].'</p>';
+                echo '</div>';
+
+                echo "<div class='centPeli'>";
+
+                echo '<p>'.$registro[ 'sinopsis' ].'</p>';
+                echo "<img class='imagenPeli' src='fotos/".$registro[ 'imagen' ]."' alt='imagen de la pelicula'>";
+
+                echo '</div>';
+
+                echo "<div class='piePeli'>";
+                echo '<p>Duración: '.$registro[ 'duracion_min' ].' min</p>';
+
+                echo '</div>';
+                echo '</div>';
+                echo "<a href='cartelera.php?idc=".$registro[ 'idCategoria' ]."'>Volver</a>";
+
+                echo '<br>';
+
+                //echo $registro[ 'titulo' ]. '<br>';
+
+            } else {
+                echo 'No hay resultados';
+            }
+
+        }
+
+    }
 }
