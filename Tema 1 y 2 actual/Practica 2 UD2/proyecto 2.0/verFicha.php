@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Pelicula</title>
+    
     <?php
         require('categoria.php');
         $cat = new Catergoria();
@@ -19,10 +20,12 @@
     $peli = new Pelicula();
     $peli->pintarFichaPelicula();
     ?>
-
+    
     <form action="votar.php" method="post" onsubmit="<?php refrescar() ?>">
-        <input type="submit" value="votar">
-        <input type="hidden" name="id" value="<?php echo $registro['id'];?>">
+        <input id="enviar" type="submit" value="votar">
+        <?php
+            echo "<input type='hidden' name='idp' value='".$_GET['idp']."'>";
+        ?>
     </form>
     </div>
    

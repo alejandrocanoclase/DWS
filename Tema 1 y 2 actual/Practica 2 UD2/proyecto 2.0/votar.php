@@ -1,8 +1,8 @@
 <?php
 require('conexionBD.php');
 
-$idCategoria = $_POST['id'];
-$sanitized_categoria_id = mysqli_real_escape_string($conexion, $idCategoria);
+$idPelicula = $_POST['idp'];
+$sanitized_categoria_id = mysqli_real_escape_string($conexion, $idPelicula);
 $consulta = "UPDATE T_PELICULAS SET votos = votos + 1 WHERE id='".$sanitized_categoria_id."';";
 $resultado = mysqli_query($conexion, $consulta);
 

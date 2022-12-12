@@ -28,7 +28,6 @@
             require('cpelicula.php');
             ini_set('display_errors', 'On');
             ini_set('html_errors', 0);
-        
             $peliculas = new Pelicula();
             $idCategoria = $_GET['idc'];
             $pelis = $peliculas->leerPeliculas($idCategoria);

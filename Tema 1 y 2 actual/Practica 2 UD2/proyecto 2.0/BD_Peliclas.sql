@@ -137,9 +137,9 @@ insert into T_ACTORES (id, nombre) values (1, "Vera Farmiga"),(2, "Patrick Wilso
 
 select * from T_PELICULAS;
 
-/*
+
 CREATE USER 'alex'@'localhost' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON cartelera_bd.* TO 'alex'@'localhost';
-*/
+
 -- ConnectionString.com
 

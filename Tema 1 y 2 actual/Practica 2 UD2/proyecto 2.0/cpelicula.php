@@ -101,29 +101,24 @@ class Pelicula {
                 $peli = new Pelicula();
                 $peli->init( $registro[ 'id' ], $registro[ 'titulo' ], $registro[ 'año' ], $registro[ 'duracion_min' ], $registro[ 'sinopsis' ], $registro[ 'imagen' ], $registro[ 'votos' ], $registro[ 'idCategoria' ] );
 
-                echo "<div class='pelicula'>";
-                echo "<div class='cabeceraPeli'>";
+                echo "<div class='pelicula-Ficha'>";
+                echo "<div class='cabeceraPeli-Ficha'>";
                 echo '<h2>'.$registro[ 'titulo' ].'</h2>';
-                echo '<p>Votos: '.$registro[ 'votos' ].'</p>';
                 echo '</div>';
 
-                echo "<div class='centPeli'>";
-
+                echo "<img class='imagenPeli-Ficha' src='fotos/".$registro[ 'imagen' ]."' alt='imagen de la pelicula'>";
                 echo '<p>'.$registro[ 'sinopsis' ].'</p>';
-                echo "<img class='imagenPeli' src='fotos/".$registro[ 'imagen' ]."' alt='imagen de la pelicula'>";
 
-                echo '</div>';
-
-                echo "<div class='piePeli'>";
+                echo "<div class='piePeli-Ficha'>";
                 echo '<p>Duración: '.$registro[ 'duracion_min' ].' min</p>';
+                echo '<p id="voto">Votos: '.$registro[ 'votos' ].'</p>';
 
                 echo '</div>';
                 echo '</div>';
-                echo "<a href='cartelera.php?idc=".$registro[ 'idCategoria' ]."'>Volver</a>";
+                
+                echo "<a class='volver' href='cartelera.php?idc=".$registro[ 'idCategoria' ]."'>Volver</a>";
 
-                echo '<br>';
-
-                //echo $registro[ 'titulo' ]. '<br>';
+                
 
             } else {
                 echo 'No hay resultados';
