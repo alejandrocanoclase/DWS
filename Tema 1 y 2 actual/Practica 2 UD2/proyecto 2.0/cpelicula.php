@@ -19,13 +19,39 @@ class Pelicula {
 
     }
 
-    function leerPeliculas( $id ) {
+    function leerPeliculas( ) {
         require( 'conexionBD.php' );
 
-        $id_categoria = $id;
+        $id_categoria = $_GET['idc'];
+       
+        if(isset($_GET['orden'])){
+            $orden = $_GET['orden'];
+        }else{
+            $orden = '';
+        }
+
+
+        switch($orden){
+            case 1:
+                $orden = "order by votos";
+                break;
+            case 2:
+                $orden = "order by votos desc";
+                break;
+            case 3:
+                $orden = "order by titulo";
+                break;
+            case 4:
+                $orden = "order by titulo desc";
+                break;
+            default: 
+                $orden = '';
+            
+        }
+
         $sanitized_categoria_id = mysqli_real_escape_string( $conexion, $id_categoria );
 
-        $consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria='" .$sanitized_categoria_id. "';";
+        $consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria=" .$sanitized_categoria_id. " " .$orden.";";
         $resultado = mysqli_query( $conexion, $consulta );
 
         $peliculas = [];
@@ -44,8 +70,6 @@ class Pelicula {
 
                     $peliculas[ $contador ] = $peli;
                     $contador++;
-
-                    //echo $registro[ 'titulo' ]. '<br>';
                 }
             } else {
                 echo 'No hay resultados';
@@ -68,7 +92,7 @@ class Pelicula {
             echo '</div>';
 
             echo "<div class='centPeli'>";
-            echo "<img class='imagenPeli' src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'>";
+            echo "<div class='imagenPeli'><img src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'></div>";
             echo '<p>'.$pelicula->sinopsis.'</p>';
             echo '</div>';
 
@@ -106,7 +130,7 @@ class Pelicula {
                 echo '<h2>'.$registro[ 'titulo' ].'</h2>';
                 echo '</div>';
 
-                echo "<img class='imagenPeli-Ficha' src='fotos/".$registro[ 'imagen' ]."' alt='imagen de la pelicula'>";
+                echo "<div class='dimg-Ficha'><img class='imagenPeli-Ficha' src='fotos/".$registro[ 'imagen' ]."' alt='imagen de la pelicula'></div>";
                 echo '<p>'.$registro[ 'sinopsis' ].'</p>';
 
                 echo "<div class='piePeli-Ficha'>";
@@ -115,16 +139,10 @@ class Pelicula {
 
                 echo '</div>';
                 echo '</div>';
-                
-                echo "<a class='volver' href='cartelera.php?idc=".$registro[ 'idCategoria' ]."'>Volver</a>";
-
-                
 
             } else {
                 echo 'No hay resultados';
             }
-
         }
-
     }
 }

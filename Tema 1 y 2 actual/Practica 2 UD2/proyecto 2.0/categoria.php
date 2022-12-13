@@ -23,7 +23,6 @@ class Catergoria{
                 while ($registro = mysqli_fetch_assoc($resultado)) {
                     
                     echo "<li><a href='cartelera.php?idc=".$registro['id']."' >".$registro['genero']."</a></li>" ;
-                    
 
                 }
                 echo "<ul>";

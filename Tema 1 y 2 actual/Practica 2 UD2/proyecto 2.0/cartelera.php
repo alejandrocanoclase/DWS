@@ -17,10 +17,15 @@
 </head>
 <body>
     <nav>
-        <ul>
+        <ul class="navegacion">
             <li><h1><a href="portada.php">Categorias de la cartelera</a></h1></li>
-            <!--<li>Ordenar por votos ASC</li>
-            <li>Ordenar por votos DESC</li>-->
+            <li><a id="ordenar" ><h2>Ordenar</h2></a>
+            <ul>
+				<li><a href="cartelera.php?idc=<?php echo $_GET['idc'] ?>&orden=1">Orden ascendemte por votos</a></li>
+				<li><a href="cartelera.php?idc=<?php echo $_GET['idc'] ?>&orden=2">Orden descendente por votos</a></li>
+				<li><a href="cartelera.php?idc=<?php echo $_GET['idc'] ?>&orden=3">Orden alfabetico ascendente</a></li>
+				<li><a href="cartelera.php?idc=<?php echo $_GET['idc'] ?>&orden=4">Orden descendente descendente</a></li>
+            </li>
         </ul>
     </nav>
     <div class="contenido">
@@ -29,8 +34,7 @@
             ini_set('display_errors', 'On');
             ini_set('html_errors', 0);
             $peliculas = new Pelicula();
-            $idCategoria = $_GET['idc'];
-            $pelis = $peliculas->leerPeliculas($idCategoria);
+            $pelis = $peliculas->leerPeliculas();
             $peliculas->pintarPeliculas($pelis);
         ?>
     </div>

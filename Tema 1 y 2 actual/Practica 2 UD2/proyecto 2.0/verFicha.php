@@ -23,8 +23,9 @@
     
     <form action="votar.php" method="post" onsubmit="<?php refrescar() ?>">
         <input id="enviar" type="submit" value="votar">
+        <a class='volver' href='cartelera.php?idc=<?php echo $_GET['idc'];?>'>Volver</a>
         <?php
-            echo "<input type='hidden' name='idp' value='".$_GET['idp']."'>";
+            echo "<input type='hidden' name='idp' value=".$_GET['idp'].">";
         ?>
     </form>
     </div>

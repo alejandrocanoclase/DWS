@@ -2,25 +2,52 @@
     padding: 0pt;
     margin: 0pt;
 }
-
+/* <--- BARRA DE NAVEGACIÓN --->*/
 nav{
     width: 100%;
     height: 5em;
     background-color: orangered;
-}
-nav li{
-    list-style: none;
-    padding: 1em;
-}
-nav a{
-    text-decoration: none;
-    color: rgb(208, 208, 208);
-    font-size: 1.5em;
     font-family: 'Bangers', cursive;
-    text-shadow: 5px 5px 5px black;
-    letter-spacing: 1px;
+    font-size: 1.3rem;
 }
 
+ul{
+    list-style: none;
+}
+
+.navegacion > li{
+    padding: 1em;
+    float: left;
+}
+.navegacion li a {
+    background-color: orangered;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 12px;
+    display:block;
+}
+
+
+.navegacion li ul {
+    display:none;
+    position:absolute;
+    min-width:140px;
+}
+
+.navegacion li:hover > ul {
+    display:block;
+}
+
+.navegacion li ul li {
+    position:relative;
+}
+
+.navegacion li ul li ul {
+    right:-140px;
+    top:0px;
+}
+
+/*<--- CONETNIDO DE LA PAGINA --->*/
 body{
     background-image: url(./../fotos/onepiece.png);
     background-repeat: no-repeat;
@@ -54,6 +81,8 @@ footer{
 .pelicula{
     padding: 1em;
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-shadow: 5px 5px 5px black;
     
 }
 
@@ -78,40 +107,41 @@ footer{
 
 /* PARTE CENTRAL DE LA PELICULA*/
 .centPeli{
-    height: 70%;
+    height: 100%;
     padding: 1em;
 }
 
 .imagenPeli{
-    max-height: 18rem;
-    margin-left: 2rem;
+    width: 50%;
+
+}
+
+.imagenPeli img{
+    max-height: 20rem;
 }
 
 .centPeli p{
-    float: right;
-    width: 60%;
-    height: 150pt;
-    vertical-align: middle;
+
     font-size: 1.2em;
-    margin-right: 2rem;
     text-align: justify;
-    color: white;
-    text-shadow: 5px 5px 5px black;
+    
 }
 
 /* PIE DE LA PELICULA*/
+
 .piePeli{
-    color: white;
-    text-shadow: 5px 5px 5px black;
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 30px;
 }
 
 .piePeli p{
-    display: inline;
     width: 50%;
+    float: left;
 }
 
 #enlace{
-    float: right;
+
     text-align: right;
 }
 #enlace a{
@@ -120,9 +150,9 @@ footer{
 }
 
 #enlace a:hover{
-    color: yellow;
+    color: rgb(255, 0, 0);
     padding: 2px;
-    background-color: rgb(0, 72, 255);
+    background-color: rgb(0, 0, 0);
     border-radius: 5px;
 }
 
@@ -133,11 +163,16 @@ footer{
 }
 
 .imagenPeli-Ficha{
-    max-height: auto;
+    max-height: 600px;
     border-radius: 5px;
     border: 1px solid white;
     box-shadow: 5px 5px 5px black;
+    width: auto;
+}
+
+.dimg-Ficha{
     width: 100%;
+    text-align: center;
 }
 
 .cabeceraPeli-Ficha{
