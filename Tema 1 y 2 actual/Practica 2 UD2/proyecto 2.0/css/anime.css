@@ -9,6 +9,7 @@ nav{
     background-color: orangered;
     font-family: 'Bangers', cursive;
     font-size: 1.3rem;
+    text-shadow: 2px 2px 2px black;
 }
 
 ul{

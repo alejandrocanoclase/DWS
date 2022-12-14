@@ -109,13 +109,13 @@ cuando su pueblo es invadido por pingüinos.', 'pinguinos.jpeg',2),
 flotante hecha por el hombre. Allí, conocen a una chica y pelean contra un villano que 
 domina el lugar. Además, se develará información sobre el pasado de All-Might.', 'MyHeroAcademia.webp',2);
 
-insert into T_DIRECTORES (id, nombre) values (1,"Michael Chaves"),
+insert into T_DIRECTORES (id, nombre) values (1,"Kohei Horikoshi"),
 (2,"James Wan"), (3,"William Friedkin"), (4,"Tobe Hooper"),(5,"Ari Asier"),(6,"Stanley Kubrick"),
 (7,"Sean S. Cunningham"), (8,"Hayao Miyazaki"),(9,"Makoto Shinkai"),(10,"Isao Takahata"),
 (11,"Hiroyasu Ishida"),(12,"Kenji Nagasaki");
 
-insert into T_DIRECTORES_PELICULAS (idDirector, idPelicula) values (1,1),(2,1), (3,2),
-(4,3), (5,4),(6,5),(7,6),(8,7),(9,8),(10,9), (11,10), (12,11);
+insert into T_DIRECTORES_PELICULAS (idPelicula, idDirector) values (1,2),(2,3), (3,4),
+(4,5), (5,6),(6,7),(7,8),(8,9),(9,9),(10,10), (11,11), (12,11),(12,1);
 
 insert into T_ACTORES (id, nombre) values (1, "Vera Farmiga"),(2, "Patrick Wilson"),
 (3, "Sterling Jerins"),(4, "Joseph Bishara"),(5, "Shannon Kook"),(6, "Joey King"),(7, "Linda Blair"),
@@ -129,17 +129,30 @@ insert into T_ACTORES (id, nombre) values (1, "Vera Farmiga"),(2, "Patrick Wilso
 (40, "Daveigh Chase"), (41, "Bunta Sugawara"), (42, "Mari Natsuki"), (43, "Mone Kamishiraishi"),
 (44, "Ryo Narita"), (45, "Laura Post"), (46, "Sayaka Ohara"), (47, "Kanon Tani"),
 (48, "Nana Mori"), (49, "Sakura kiryu"),(50, "Shun Oguri"), (51, "Ayane Sakura"), (52, "Alison Brie"),
-(53, "Nana Mori"), (54, "Ayano Shiraishi"), (55, "Adam Gibbs"), (56, "Akemi Yamaguchi"),
+(53, "Kaito Ishikawa"), (54, "Ayano Shiraishi"), (55, "Adam Gibbs"), (56, "Akemi Yamaguchi"),
 (57, "Yoshiko Shinobara"), (58, "Teruhisa Harita"), (59, "Massayo Sakai"),
 (60, "Kana Kita"), (61, "Yu Aoi"), (62, "Rie Kugimiya"), (63, "Megumi Han"),(64, "Hidetoshi Nishijima"),
 (65, "Mamiko Noto"), (66, "Daiki Yamashita"), (67, "Kenta Miyake"), (68, "Nobuhiko Okamto"),
 (69, "Yuki Kaji"), (70, "Mirai Shida");
 
-select * from T_PELICULAS;
+insert into T_ACTORES_PELICULAS (idPelicula, idActores) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),
+(2,7),(2,8),(2,9),(2,10),(2,11),(2,12),
+(3,13),(3,14),(3,15),(3,16),(3,17),(3,18),
+(4,19),(4,20),(4,21),(4,22),(4,23),(4,24),
+(5,25),(5,26),(5,27),(5,28),(5,29),(5,30),
+(6,31),(6,32),(6,33),(6,34),(6,35),(6,36),
+(7,37),(7,38),(7,39),(7,40),(7,41),(7,42),
+(8,38),(8,43),(8,44),(8,46),(8,47),(8,45),
+(9,48),(9,49),(9,50),(9,51),(9,52),
+(10,54),(10,55),(10,56),(10,57),(10,58),(10,59),
+(11,60),(11,61),(11,62),(11,63),(11,64),(11,65),
+(12,66),(12,67),(12,68),(12,69),(12,70),(12,53),(12,51);
 
+select * from T_PELICULAS ;
 
+/*
 CREATE USER 'alex'@'localhost' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON cartelera_bd.* TO 'alex'@'localhost';
-
+*/
 -- ConnectionString.com
 
