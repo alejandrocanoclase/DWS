@@ -106,12 +106,23 @@ class Pelicula {
 
     }
 
-    function pintarFichaPelicula() {
+    function leerFichaPelicula() {
         require( 'conexionBD.php' );
 
         $idPelicula = $_GET[ 'idp' ];
         $sanitized_categoria_id = mysqli_real_escape_string( $conexion, $idPelicula );
-        $consulta = "SELECT * FROM T_PELICULAS WHERE id='" .$sanitized_categoria_id. "';";
+        $consulta = "SELECT 
+        p.titulo,p.sinopsis,p.duracion_min,p.votos,p.imagen, a.nombre as actores, d.nombre as directores
+            FROM
+        T_PELICULAS AS p
+            LEFT JOIN
+        T_ACTORES_PELICULAS AS ap ON p.id = ap.idPelicula
+            LEFT JOIN
+        T_ACTORES AS a ON ap.idActores = a.id
+            LEFT JOIN
+        T_DIRECTORES_PELICULAS AS dp ON dp.idPelicula = p.id
+            LEFT JOIN
+        T_DIRECTORES AS d ON d.id = dp.idPelicula WHERE p.id='" .$sanitized_categoria_id. "';";
         $resultado = mysqli_query( $conexion, $consulta );
 
         if ( !$resultado ) {
@@ -120,29 +131,62 @@ class Pelicula {
             die( $mensaje );
         } else {
             if ( ( $resultado->num_rows ) > 0 ) {
-                $registro = mysqli_fetch_assoc( $resultado );
 
                 $peli = new Pelicula();
-                $peli->init( $registro[ 'id' ], $registro[ 'titulo' ], $registro[ 'año' ], $registro[ 'duracion_min' ], $registro[ 'sinopsis' ], $registro[ 'imagen' ], $registro[ 'votos' ], $registro[ 'idCategoria' ] );
+                $directores = [];
+                $actores = [];
 
-                echo "<div class='pelicula-Ficha'>";
-                echo "<div class='cabeceraPeli-Ficha'>";
-                echo '<h2>'.$registro[ 'titulo' ].'</h2>';
-                echo '</div>';
+                $contador = 0;
+                while ( $registro = mysqli_fetch_assoc( $resultado ) ) {
 
-                echo "<div class='dimg-Ficha'><img class='imagenPeli-Ficha' src='fotos/".$registro[ 'imagen' ]."' alt='imagen de la pelicula'></div>";
-                echo '<p>'.$registro[ 'sinopsis' ].'</p>';
+                    $peli->init( $registro[ 'id' ], $registro[ 'titulo' ], $registro[ 'año' ], $registro[ 'duracion_min' ], $registro[ 'sinopsis' ], $registro[ 'imagen' ], $registro[ 'votos' ], $registro[ 'idCategoria' ] );
 
-                echo "<div class='piePeli-Ficha'>";
-                echo '<p>Duración: '.$registro[ 'duracion_min' ].' min</p>';
-                echo '<p id="voto">Votos: '.$registro[ 'votos' ].'</p>';
+                    if($directores[$contador -1] != $registro['directores']){
+                        $directores[$contador] = $registro['directores'];
+                    }
+                    
+                    $actores[$contador] = $registro['actores'];
+                    
+                    $contador++;
+                }
 
-                echo '</div>';
-                echo '</div>';
+                $this->pintarFicha($peli,$actores,$directores);
+
 
             } else {
                 echo 'No hay resultados';
             }
         }
     }
+
+    function pintarFicha($pelicula, $actores, $directores){
+
+        echo "<div class='pelicula-Ficha'>";
+        echo "<div class='cabeceraPeli-Ficha'>";
+        echo '<h2>'.$pelicula->titulo.'</h2>';
+        
+        echo '</div>';
+        echo "<div class='dimg-Ficha'><img class='imagenPeli-Ficha' src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'></div>";
+        echo '<p>'.$pelicula->sinopsis.'</p>';
+        
+        $director = '';
+        foreach($directores as $nombre){
+            $director = $director.$nombre.' ';
+        }
+        echo '<p>Director/es: '.$director.'</p>';
+
+        $actor = '';
+        foreach($actores as $nombre){
+            $actor = $actor.$nombre.' ';
+        }
+        echo '<p>Actores: '.$actor.'</p>';
+        echo "<div class='piePeli-Ficha'>";
+        echo '<p>Duración: '.$pelicula->duracion.' min</p>';
+        echo '<p id="voto">Votos: '.$pelicula->votos.'</p>';
+
+        echo '</div>';
+        echo '</div>';
+
+    }
+    
 }

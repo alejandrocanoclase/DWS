@@ -18,7 +18,7 @@
     <?php
     require('cpelicula.php');
     $peli = new Pelicula();
-    $peli->pintarFichaPelicula();
+    $peli->leerFichaPelicula();
     ?>
     
     <form action="votar.php" method="post" onsubmit="<?php refrescar() ?>">
