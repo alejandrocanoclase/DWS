@@ -93,7 +93,7 @@ class Pelicula {
 
             echo "<div class='centPeli'>";
             echo "<div class='imagenPeli'><img src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'></div>";
-            echo '<p>'.$pelicula->sinopsis.'</p>';
+            echo '<div class="descripcion"><p>'.$pelicula->sinopsis.'</p></div>';
             echo '</div>';
 
             echo "<div class='piePeli'>";
@@ -142,13 +142,13 @@ class Pelicula {
                     echo "<div class='dimg-Ficha'><img class='imagenPeli-Ficha' src='fotos/".$registro['imagen']."' alt='imagen de la pelicula'></div>";
                     echo '<p>'.$registro['sinopsis'].'</p>';
                     echo "<div class='piePeli-Ficha'>";
-                    echo '<p>Director/es: '.$registro['directores'].'</p><br>';
+                    echo '<p><span>Director/es:</span> '.$registro['directores'].'</p><br>';
                     $actores = ' ';
                     while($registro2 = mysqli_fetch_assoc( $resultado )){
                         $actores = $actores.$registro2['actores'];
                     }
-                    echo '<p>Actores: '.$actores.'</p><br>';
-                    echo '<p>Duración: '.$registro['duracion_min'].' min</p>';
+                    echo '<p><span>Actores:</span> '.$actores.'</p><br>';
+                    echo '<p><span>Duración:</span> '.$registro['duracion_min'].' min</p>';
                     echo '<p id="voto">Votos: '.$registro['votos'].'</p>';
             
                     echo '</div>';

@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(48, 119, 250);
+}
+
+div{
+    width: 60%;
+    margin: auto;
+}
+
+h1{
+    color: orangered;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 4rem;
+    margin-top: 40%;
+    text-align: center;
+}
