@@ -28,7 +28,7 @@
             </li>
         </ul>
     </nav>
-    <div class="contenido">
+    
         <?php
             require('cpelicula.php');
             ini_set('display_errors', 'On');
@@ -37,7 +37,7 @@
             $pelis = $peliculas->leerPeliculas();
             $peliculas->pintarPeliculas($pelis);
         ?>
-    </div>
+    
     <footer>
         Copy Right &copy 2022
     </footer>

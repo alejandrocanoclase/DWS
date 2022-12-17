@@ -27,7 +27,7 @@ class Catergoria{
                 }
                 echo "<ul>";
             } else {
-                echo "No hay resultados";
+                header('Location: error.html');
             }
         }
 

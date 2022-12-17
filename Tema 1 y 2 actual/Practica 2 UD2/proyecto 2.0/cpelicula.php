@@ -72,7 +72,7 @@ class Pelicula {
                     $contador++;
                 }
             } else {
-                echo 'No hay resultados';
+                header('Location: error.html');
             }
         }
 
@@ -84,21 +84,22 @@ class Pelicula {
  {
 
         foreach ( $peliculas as $pelicula ) {
-            
+            echo "<div class='contenido'>";
             echo "<div class='pelicula'>";
-            echo "<div class='cabeceraPeli'>";
-            echo '<h2>'.$pelicula->titulo.'</h2>';
-            echo '<p>Votos: '.$pelicula->votos.'</p>';
-            echo '</div>';
+                echo "<div class='cabeceraPeli'>";
+                    echo '<h2>'.$pelicula->titulo.'</h2>';
+                    echo '<p>Votos: '.$pelicula->votos.'</p>';
+                echo '</div>';
 
-            echo "<div class='centPeli'>";
-            echo "<div class='imagenPeli'><img src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'></div>";
-            echo '<div class="descripcion"><p>'.$pelicula->sinopsis.'</p></div>';
-            echo '</div>';
+                echo "<div class='centPeli'>";
+                    echo "<img class='imagenPeli' src='fotos/".$pelicula->imagen."' alt='imagen de la pelicula'>";
+                    echo '<div class="descripcion"><p>'.$pelicula->sinopsis.'</p></div>';
+                echo '</div>';
 
-            echo "<div class='piePeli'>";
-            echo '<p>Duración: '.$pelicula->duracion.' min</p>';
-            echo "<p id='enlace'>Enlace, <a href='verFicha.php?idp=".$pelicula->id."&idc=".$pelicula->idCategoria."'>ver Ficha</a></p>";
+                echo "<div class='piePeli'>";
+                    echo '<p>Duración: '.$pelicula->duracion.' min</p>';
+                    echo "<p id='enlace'>Ver  <a href='verFicha.php?idp=".$pelicula->id."&idc=".$pelicula->idCategoria."'>ficha de pelicula</a></p>";
+                echo '</div>';
             echo '</div>';
             echo '</div>';
             echo '<br>';
@@ -135,27 +136,28 @@ class Pelicula {
                 $registro = mysqli_fetch_assoc( $resultado ); 
                 
                     echo "<div class='pelicula-Ficha'>";
-                    echo "<div class='cabeceraPeli-Ficha'>";
-                    echo '<h2>'.$registro['titulo'].'</h2>';
+                        echo "<div class='cabeceraPeli-Ficha'>";
+                            echo '<h2>'.$registro['titulo'].'</h2>';
         
-                    echo '</div>';
-                    echo "<div class='dimg-Ficha'><img class='imagenPeli-Ficha' src='fotos/".$registro['imagen']."' alt='imagen de la pelicula'></div>";
-                    echo '<p>'.$registro['sinopsis'].'</p>';
-                    echo "<div class='piePeli-Ficha'>";
-                    echo '<p><span>Director/es:</span> '.$registro['directores'].'</p><br>';
-                    $actores = ' ';
-                    while($registro2 = mysqli_fetch_assoc( $resultado )){
-                        $actores = $actores.$registro2['actores'];
-                    }
-                    echo '<p><span>Actores:</span> '.$actores.'</p><br>';
-                    echo '<p><span>Duración:</span> '.$registro['duracion_min'].' min</p>';
-                    echo '<p id="voto">Votos: '.$registro['votos'].'</p>';
-            
-                    echo '</div>';
+                        echo '</div>';
+                        echo "<div class='dimg-Ficha'><img class='imagenPeli-Ficha' src='fotos/".$registro['imagen']."' alt='imagen de la pelicula'></div>";
+                        echo '<p class="sinopsis">'.$registro['sinopsis'].'</p>';
+                        echo "<div class='centPeli-Ficha'>";
+                            echo '<p><span>Director/es:</span> '.$registro['directores'].'</p>';
+                            $actores = ' ';
+                            while($registro2 = mysqli_fetch_assoc( $resultado )){
+                                $actores = $actores.$registro2['actores'].', ';
+                            }
+                            echo '<p><span>Actores:</span> '.$actores.'</p>';
+                        echo "</div>";
+                        echo "<div class='piePeli-Ficha'>";
+                            echo '<p><span>Duración:</span> '.$registro['duracion_min'].' min</p>';
+                            echo '<p id="voto"><span>Votos:</span> '.$registro['votos'].'</p>';
+                        echo '</div>';
                     echo '</div>';
 
             } else {
-                echo 'No hay resultados';
+                header('Location: error.html');
             }
         }
     }

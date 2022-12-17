@@ -1,16 +1,36 @@
 body{
-    background-color: rgb(48, 119, 250);
+    background-color: rgb(72, 134, 250);
 }
 
 div{
     width: 60%;
     margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1{
-    color: orangered;
-    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px black;
     font-size: 4rem;
     margin-top: 40%;
     text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    background-color: rgb(139, 206, 38);
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid black;
+    font-size: 2rem;
+}
+
+a:hover{
+    background-color: white;
+    color: rgb(139, 206, 38);
 }

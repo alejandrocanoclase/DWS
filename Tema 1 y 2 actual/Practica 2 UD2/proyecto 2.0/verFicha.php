@@ -22,7 +22,7 @@
         $peli = new Pelicula();
         $peli->leerFichaPelicula();
         ?>
-
+    <br>
         <form action="votar.php" method="post" onsubmit="<?php refrescar() ?>">
 
             <input class="cositas" id="enviar" type="submit" value="Votar">
