@@ -146,7 +146,7 @@ class Pelicula {
                             echo '<p><span>Director/es:</span> '.$registro['directores'].'</p>';
                             $actores = ' ';
                             while($registro2 = mysqli_fetch_assoc( $resultado )){
-                                $actores = $actores.$registro2['actores'].', ';
+                                $actores .= $registro2['actores'].', ';
                             }
                             echo '<p><span>Actores:</span> '.$actores.'</p>';
                         echo "</div>";
