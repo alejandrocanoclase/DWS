@@ -10,7 +10,7 @@ class Catergoria{
     function pintarCategorias(){
         require('conexionBD.php');
 
-        $consulta = "SELECT * FROM T_CATEGORIAS";
+        $consulta = "SELECT id, genero FROM T_CATEGORIAS";
         $resultado = mysqli_query($conexion, $consulta);
     
         if (!$resultado) {
@@ -41,7 +41,8 @@ class Catergoria{
         $resultado = mysqli_query($conexion, $consulta);
 
         if(!$resultado){
-            echo "ha petado";
+            $mensaje = 'Consulta inválida: ' . mysqli_errno($conexion) . "\n";
+            $mensaje .= 'Consulta realizada: ' . $consulta;
         }else{
             if($resultado->num_rows > 0){
                 $registro = mysqli_fetch_assoc($resultado);

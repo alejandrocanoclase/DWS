@@ -51,7 +51,7 @@ class Pelicula
 
         $sanitized_categoria_id = mysqli_real_escape_string($conexion, $id_categoria);
 
-        $consulta = "SELECT * FROM T_PELICULAS WHERE idCategoria=" . $sanitized_categoria_id . " " . $orden . ";";
+        $consulta = "SELECT id, titulo, año, duracion_min, sinopsis, imagen, votos, idCategoria FROM T_PELICULAS WHERE idCategoria=" . $sanitized_categoria_id . " " . $orden . ";";
         $resultado = mysqli_query($conexion, $consulta);
 
         $peliculas = [];
@@ -168,7 +168,7 @@ class Pelicula
             }
         }
     }
-
+/*
     function refrescar()
     {
         session_start();
@@ -177,4 +177,5 @@ class Pelicula
             $_SESSION['already_refreshed'] = true;
         }
     }
+*/
 }
