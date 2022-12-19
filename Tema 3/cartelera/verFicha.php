@@ -22,17 +22,8 @@
         $peli = new Pelicula();
         $peli->leerFichaPelicula();
         ?>
-    <br>
-        <form action="votar.php" method="post" onsubmit="<?php refrescar() ?>">
 
-            <input class="cositas" id="enviar" type="submit" value="Votar">
-            <?php
-            echo "<input type='hidden' name='idp' value=" . $_GET['idp'] . ">";
-            ?>
 
-            <a class='volver cositas' href='cartelera.php?idc=<?php echo $_GET['idc']; ?>'>Volver</a>
-
-        </form>
     </div>
 
 </body>
@@ -40,12 +31,5 @@
 </html>
 
 <?php
-function refrescar()
-{
-    session_start();
-    if (!isset($_SESSION['already_refreshed'])) {
-        header("Refresh: 5");
-        $_SESSION['already_refreshed'] = true;
-    }
-}
+
 ?>

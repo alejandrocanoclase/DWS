@@ -119,6 +119,7 @@ footer{
     float: right;
     margin-right: 5%;
     margin-top: 5%;
+    
 }  
 
 
@@ -224,7 +225,7 @@ span{
     text-align: center;
     width: 25%;
 }
-.cositas{
+.boton{
     padding: 15px;
     background-color: rgb(139, 0, 0);
     font-family: Arial, Helvetica, sans-serif;
@@ -234,7 +235,7 @@ span{
     border-radius: 5px;
 }
 
-.cositas:hover{
+.boton:hover{
     background-color: rgb(94, 0, 0);
 }
 
