@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.torneo{
+    width: 100%;
+    height: 600px;
+    border: 1px solid black;
+}
+
+.columna{
+    width: 24%;
+    height: 90%;
+    vertical-align: top;
+    border: 1px solid red;
+    display: inline-block;
+}
+
+.fila{
+    padding: 0;
+}
+
+.cuartos{
+    margin-top: 20%;   
+}
+
+.semifinal{
+    margin-top: 45%;   
+
+}
+
+.final{
+    margin-top: 80%;   
+}
+
+.campeon{
+    margin-top: 120%;   
+}
