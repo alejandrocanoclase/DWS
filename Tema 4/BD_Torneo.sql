@@ -7,21 +7,21 @@ drop table if exists T_TORNEOS;
 create table T_TORNEOS(
 	id int primary key auto_increment,
     nombre varchar(50) not null,
-    num_jugadores int not null,
+    numJugadores int default 8,
     fecha date not null
 );
 
 drop table if exists T_JUGADORES;
 create table T_JUGADORES(
-	id int primary key,
+	id int primary key auto_increment,
     nombre varchar(50)
 );
 
 drop table if exists T_PARTIDOS;
 create table T_PARTIDOS(
-	id int primary key,
+	id int primary key auto_increment,
     idTorneo int,
-    tipo_partido enum('cuartos','semifinal','final'),
+    tipoPartido enum('cuartos','semifinal','final'),
     idJugadorA int,
     idJugadorB int,
     ganador int,
@@ -39,6 +39,17 @@ create table T_USUARIOS(
     clave varchar(255)
 );
 
--- insert into T_TORNEOS (nombre, num_jugadores,fecha) values ('Prueba de torneo', 16, 2023-01-09);
+insert into T_JUGADORES (nombre) values ('Mari Carmen Alfaro'),('Alejandro Cano'),('Jaume Aguiló'),('Fernando Buendía'),
+('Margalida Moyá'),('Daniel Okolo'),('Adrian Guinot'),('Sergio Díaz');
 
--- select * from T_TORNEOS;
+insert into T_TORNEOS (nombre,fecha) values ('Torneo navidad', "2023-01-09");
+insert into T_TORNEOS (nombre,fecha) values ('Torneo fin de curso', "2023-06-015");
+
+insert into T_PARTIDOS (idTorneo, tipoPartido, idJugadorA, idJugadorB, ganador) values 
+(1,'cuartos',1,2,2), (1,'cuartos',3,4,3),(1,'cuartos',5,6,5),(1,'cuartos',7,8,8),
+(1,'semifinal',2,3,2),(1,'semifinal',5,8,5),
+(1,'final',2,5,2);
+
+
+select * from T_TORNEOS;
+select * from T_PARTIDOS;
